@@ -1,65 +1,71 @@
-# My Packagist Package
+# Auto Pagination Laravel
 
-Este paquete proporciona un middleware y un proveedor de servicios para manejar la paginación en las solicitudes de API en aplicaciones Laravel.
+Este paquete proporciona un **middleware** y un **proveedor de servicios** para manejar la paginación en las solicitudes de API dentro de aplicaciones Laravel.
 
-## Estructura del Proyecto
-
-```
-my-packagist-package
-├── src
-│   ├── Http
-│   │   └── Middleware
-│   │       └── PaginateMiddleware.php
-│   ├── Providers
-│   │   └── PaginationProvider.php
-├── tests
-│   └── Feature
-│       └── PaginateApiTest.php
-├── bootstrap
-│   └── providers.php
-├── composer.json
-└── README.md
-```
+---
 
 ## Instalación
 
-Para instalar este paquete, puedes usar Composer. Ejecuta el siguiente comando en tu terminal:
+Ejecuta el siguiente comando en tu terminal:
 
-```
-composer require tu-usuario/my-packagist-package
-```
-
-## Uso
-
-1. **Registrar el Proveedor de Servicios**: Asegúrate de que el `PaginationProvider` esté registrado en tu archivo `bootstrap/providers.php`:
-
-   ```php
-   return [
-       App\Providers\AppServiceProvider::class,
-       App\Providers\PaginationProvider::class,
-   ];
-   ```
-
-2. **Aplicar el Middleware**: Puedes aplicar el `PaginateMiddleware` a tus rutas en el archivo de rutas de tu aplicación:
-
-   ```php
-   Route::middleware([App\Http\Middleware\PaginateMiddleware::class])->group(function () {
-       Route::get('/api/impresoras', [ImpresoraController::class, 'index']);
-   });
-   ```
-
-## Pruebas
-
-Este paquete incluye pruebas para verificar el comportamiento de la paginación. Puedes ejecutar las pruebas utilizando PHPUnit:
-
-```
-vendor/bin/phpunit
+```sh
+composer require alanmjc/auto-pagination-laravel
 ```
 
-## Contribuciones
+---
 
-Las contribuciones son bienvenidas. Si deseas contribuir a este paquete, por favor abre un issue o un pull request en el repositorio.
+## 🔧 Uso
 
-## Licencia
+### 1️⃣ Registrar el Proveedor de Servicios
 
-Este proyecto está licenciado bajo la [Licencia MIT](LICENSE).
+Asegúrate de que `PaginationProvider` esté registrado en el archivo **`bootstrap/providers.php`**:
+
+```php
+return [
+    // ...
+    AutoPaginationLaravel\Providers\PaginationProvider::class,
+];
+```
+
+---
+
+### 2️⃣ Aplicar el Middleware
+
+#### ✅ En las rutas:
+
+Aplica `PaginateMiddleware` en el archivo de rutas:
+
+```php
+use AutoPaginationLaravel\Http\Middleware\PaginateMiddleware;
+
+// ...
+
+Route::middleware([PaginateMiddleware::class])->group(function () {
+    Route::get('/test', [ExampleController::class, 'index']);
+});
+```
+
+#### ✅ En un controlador específico:
+
+También puedes aplicarlo junto con otros middlewares, como la autenticación:
+
+```php
+use AutoPaginationLaravel\Http\Middleware\PaginateMiddleware;
+
+Route::group(['middleware' => ['auth:sanctum', PaginateMiddleware::class]], function () {
+    Route::get('/test', [ExampleController::class, 'index']);
+});
+```
+
+---
+
+## 🤝 Contribuciones
+
+¡Las contribuciones son bienvenidas! 🎉  
+Si deseas colaborar con este paquete, abre un **issue** o un **pull request** en el repositorio.
+
+---
+
+## 📜 Licencia
+
+Este proyecto está bajo la **[Licencia MIT](LICENSE)**.
