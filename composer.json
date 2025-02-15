@@ -8,7 +8,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Vendor\\AutoPagination\\": "src/"
+      "AutoPaginationLaravel\\": "src/"
     }
   },
   "autoload-dev": {
