@@ -8,8 +8,7 @@
   },
   "autoload": {
     "psr-4": {
-      "AutoPaginationLaravel\\": "src/",
-      "alanmjc/auto-pagination-laravel": "dev-main"
+      "alanmjc/auto-pagination-laravel\\": "dev-main"
     }
   },
   "autoload-dev": {
