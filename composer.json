@@ -1,5 +1,5 @@
 {
-  "name": "vendor/auto-pagination-laravel",
+  "name": "alanmjc/auto-pagination-laravel",
   "description": "A Laravel package for handling pagination in API responses.",
   "type": "library",
   "require": {
